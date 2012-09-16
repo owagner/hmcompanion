@@ -13,14 +13,14 @@ public class ServerCommandHMGet extends ServerCommand
 	{
 		super("HMGET","<variable> [<variable2>...|-timestamp|-timestampts] - get HMScript system variable/timestamps");
 	}
-	
+
 	private DateFormat hmcformat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	
+
 	@Override
 	public void exec(Server s, ArgSplitter args) throws Exception
 	{
 		boolean timestamp=false, timestampts=false, state=false;
-		
+
 		if(args.args.length<1)
 		{
 			s.send("-Missing argument <variable>");
@@ -43,7 +43,7 @@ public class ServerCommandHMGet extends ServerCommand
 				state=true;
 				continue;
 			}
-			
+
 			StringBuilder script=new StringBuilder();
 			script.append("Write(dom.GetObject(\"");
 			script.append(a);

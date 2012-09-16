@@ -16,14 +16,14 @@ public class DevicePopupMenu extends JPopupMenu
 	public DevicePopupMenu(Device d)
 	{
 		super();
-		
+
 		addEntries(d,d.getValueParamsetDescription());
 		for(Device sd:d.subdevices.values())
 		{
 			addEntries(sd,sd.getValueParamsetDescription());
 		}
 	}
-	
+
 	private void addSetter(final JMenuItem mit,final Device d,final String n,final Object val)
 	{
 		mit.addActionListener(new ActionListener(){
@@ -48,14 +48,14 @@ public class DevicePopupMenu extends JPopupMenu
 			}
 		});
 	}
-	
+
 	private void addEntries(Device d,HMXRMap v)
 	{
 		HMXRMap vals=d.getValues();
-		
+
 		if(v.getString("faultString")!=null)
 			return;
-		
+
 		JMenu m=new JMenu(d.getName());
 		boolean didAdd=false;
 System.out.println(v);
@@ -86,7 +86,7 @@ System.out.println(v);
 				else if("FLOAT".equals(type))
 				{
 					String unit=parms.getString("UNIT");
-					
+
 					if("100%".equals(unit))
 					{
 						JMenu mg=new JMenu(lab+" "+Math.round(vals.getDouble(lab)*100)+"%");
@@ -101,15 +101,15 @@ System.out.println(v);
 					}
 					else
 					{
-						
+
 						JMenu mg=new JMenu(lab+" "+vals.get(lab));
 						double min=parms.getDouble("MIN");
 						double max=parms.getDouble("MAX");
-						
+
 						for(int c=0;c<10;c++)
 						{
 							double sv=min + ((max-min)/10)*c;
-							
+
 							JMenuItem mit=new JMenuItem(String.valueOf(sv));
 							mg.add(mit);
 						}
@@ -122,19 +122,19 @@ System.out.println(v);
 			{
 				// Display only
 				Object vlab=vals.get(lab);
-				
+
 				if("ENUM".equals(type))
 				{
 					List<?> vl=(List<?>)parms.get("VALUE_LIST");
 					if(vl!=null)
 						vlab=vl.get(vals.getInt(lab));
 				}
-				
+
 				String unit=parms.getString("UNIT");
 				unit=unit.replace("&#176;","o");
 				if(unit==null || unit.length()==0)
 					unit="";
-				
+
 				JMenuItem mit=new JMenuItem(lab+": "+vlab+unit);
 				mit.setEnabled(false);
 				m.add(mit);

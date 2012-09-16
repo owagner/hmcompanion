@@ -24,7 +24,7 @@ public class RSSI
 		{
 			/* Ignore */
 		}
-		
+
 		public int cmpVal()
 		{
 			if(from!=65536 && to!=65536)
@@ -37,9 +37,9 @@ public class RSSI
 				return Integer.MIN_VALUE;
 		}
 	}
-	
+
 	static Map<String,Map<String,RSSIInfo>> rssi=Collections.emptyMap();
-	
+
 	@SuppressWarnings({
 		"unchecked", "boxing"
 	})
@@ -49,7 +49,7 @@ public class RSSI
 		HMXRResponse r=MainWin.doRequest(m);
 
 		Map<String,Map<String,RSSIInfo>> rssi=new HashMap<String,Map<String,RSSIInfo>>();
-		
+
 		HMXRMap map=(HMXRMap)r.getData().get(0);
 		for(Map.Entry<String,Object> im:map.entrySet())
 		{
@@ -60,15 +60,15 @@ public class RSSI
 			for(Map.Entry<String,Object> cim:((HMXRMap)im.getValue()).entrySet())
 			{
 				String ik=cim.getKey();
-				
+
 				List<Object> l=(List<Object>)cim.getValue();
-				
+
 				RSSIInfo rsi=new RSSIInfo((Integer)l.get(0),(Integer)l.get(1));
 				rm.put(ik,rsi);
 			}
 
 		}
-		
+
 		RSSI.rssi=rssi;
 		Device.setRSSI(rssi);
 	}

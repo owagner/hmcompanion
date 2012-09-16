@@ -12,7 +12,7 @@ public class ServerCommandSetParam extends ServerCommand
 	{
 		super("SETPARAM","<channel name or address> <attribute> <value> - shortcut for putParamset xmlrpc request");
 	}
-	
+
 	@Override
 	public void exec(Server s, ArgSplitter args) throws Exception
 	{
@@ -38,7 +38,7 @@ public class ServerCommandSetParam extends ServerCommand
 				dix=3;
 			else
 				dix=2;
-			
+
 			HMXRMsg m=new HMXRMsg("putParamset");
 			m.addArg(it.address);
 			m.addArg(args.args[1]); // Paramset name (MASTER)
@@ -46,7 +46,7 @@ public class ServerCommandSetParam extends ServerCommand
 			Map<String,Object> map=new HashMap<String,Object>();
 			map.put(args.args[2],m.guessType(args.args[3]));
 			m.addArg(map);
-			
+
 			HMXRResponse r=HMC.connections[dix].sendRequest(m);
 			// Ignore response
 		}

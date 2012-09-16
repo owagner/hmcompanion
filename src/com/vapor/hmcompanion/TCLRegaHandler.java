@@ -1,7 +1,7 @@
 /*
  * Class to send a HMScript request to the CCU
  * using the tclrega.exe executor
- * 
+ *
  * $Id: TCLRegaHandler.java,v 1.3 2010-07-18 17:58:26 owagner Exp $
  */
 
@@ -14,11 +14,11 @@ import java.util.logging.*;
 public class TCLRegaHandler
 {
 	static URL url;
-	public static void setHMHost(String host) throws MalformedURLException 
+	public static void setHMHost(String host) throws MalformedURLException
 	{
 		url=new URL("http://"+host+":8181/tclrega.exe");
 	}
-	
+
 	public static String sendHMScript(String script)
 	{
 		try

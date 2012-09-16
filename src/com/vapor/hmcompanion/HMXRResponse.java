@@ -1,8 +1,8 @@
 /*
  * Encapsulates a HomeMatic "XML-RPC" binary response
- * 
+ *
  * $Id: HMXRResponse.java,v 1.6 2010-09-28 22:43:21 owagner Exp $
- * 
+ *
  */
 package com.vapor.hmcompanion;
 
@@ -17,7 +17,7 @@ public class HMXRResponse
 	byte data[];
 	int dataoffset=0;
 	String methodName;
-	
+
 	private int readInt()
 	{
 		// Extract 4 bytes
@@ -26,14 +26,14 @@ public class HMXRResponse
 		dataoffset+=4;
 		return (new BigInteger(bi)).intValue();
 	}
-	
+
 	List<Object> rd=new ArrayList<Object>();
-	
+
 	public List<Object> getData()
 	{
 		return rd;
 	}
-	
+
 	private Object readRpcValue() throws UnsupportedEncodingException, ParseException
 	{
 		int type=readInt();
@@ -73,7 +73,7 @@ public class HMXRResponse
 					struct.put(name,readRpcValue());
 				}
 				return struct;
-								
+
 			default:
 				for(int x=0;x<data.length;x++)
 				{
@@ -82,11 +82,11 @@ public class HMXRResponse
 				throw new ParseException("Unknown data type "+type, type);
 		}
 	}
-	
+
 	HMXRResponse(byte[] buffer,boolean methodHeader) throws ParseException, UnsupportedEncodingException
 	{
 		data=buffer;
-		
+
 		if(methodHeader)
 		{
 			int slen=readInt();
@@ -95,13 +95,13 @@ public class HMXRResponse
 			// Skip arg count
 			readInt();
 		}
-		
+
 		while(dataoffset<data.length)
 		{
 			rd.add(readRpcValue());
 		}
 	}
-	
+
 	static public HMXRResponse readMsg(Socket s,boolean methodHeader) throws IOException, ParseException
 	{
 		// Read response
@@ -136,7 +136,7 @@ public class HMXRResponse
 		return new HMXRResponse(buffer,methodHeader);
 	}
 
-	
+
 	@Override
 	public String toString()
 	{

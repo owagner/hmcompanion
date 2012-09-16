@@ -1,6 +1,6 @@
 /*
  * Caches ReGa channel names
- * 
+ *
  * $Id: ReGaDeviceCache.java,v 1.7 2012-09-16 07:42:34 owagner Exp $
  *
  */
@@ -14,7 +14,7 @@ public class ReGaDeviceCache
 {
 	static Map<String,ReGaItem> itemsByName=new HashMap<String,ReGaItem>();
 	static Map<String,ReGaItem> itemsByAddress=new HashMap<String,ReGaItem>();
-	
+
 	static ReGaItem getItemByName(String name)
 	{
 		ReGaItem it=itemsByName.get(name);
@@ -22,7 +22,7 @@ public class ReGaDeviceCache
 			it=itemsByAddress.get(name);
 		return it;
 	}
-	
+
 	static Collection<ReGaItem> getItemsByName(String name)
 	{
 		if(name.indexOf("*")<0)
@@ -33,7 +33,7 @@ public class ReGaDeviceCache
 			else
 				return null;
 		}
-		
+
 		Set<ReGaItem> res=new HashSet<ReGaItem>();
 		String wname=name.replace("*",".*");
 		Pattern p=Pattern.compile(wname);
@@ -49,14 +49,14 @@ public class ReGaDeviceCache
 		}
 		return res;
 	}
-	
+
 	static private void putRegaItem(String id,String address,String interf,String name)
 	{
 		ReGaItem r=new ReGaItem(Integer.parseInt(id),name,address,interf);
 		itemsByName.put(name,r);
 		itemsByAddress.put(address,r);
 	}
-	
+
 	/*
 	 * Obtain the High Level Device IDs
 	 */
@@ -86,11 +86,11 @@ public class ReGaDeviceCache
 		}
 		HMC.l.info("Obtained "+itemsByName.size()+" ReGa Channel items");
 	}
-	
+
 	static public Map<String,String> loadDeviceNames()
 	{
 		Map<String,String> m=new TreeMap<String,String>();
-		
+
 		HMC.l.info("Obtaining ReGa device names");
 		String r=TCLRegaHandler.sendHMScript(
 			"string id;"+

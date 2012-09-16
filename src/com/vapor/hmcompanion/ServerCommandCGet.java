@@ -12,7 +12,7 @@ public class ServerCommandCGet extends ServerCommand
 	{
 		super("CGET","<channel name or address> get channel attributes in Cacti script format");
 	}
-	
+
 	@Override
 	public void exec(Server s, ArgSplitter args) throws Exception
 	{

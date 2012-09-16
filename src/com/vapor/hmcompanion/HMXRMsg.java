@@ -1,8 +1,8 @@
 /*
  * A HomeMatic "XML-RPC" message (outgoing)
- * 
+ *
  * $Id: HMXRMsg.java,v 1.9 2012-09-16 07:42:34 owagner Exp $
- * 
+ *
  */
 
 package com.vapor.hmcompanion;
@@ -15,7 +15,7 @@ public class HMXRMsg
 {
 	private byte data[];
 	private int dataoffset;
-	
+
 	private void addByte(byte b)
 	{
 		if(dataoffset==data.length)
@@ -33,7 +33,7 @@ public class HMXRMsg
 			addByte((byte)0);
 		for(byte s:d)
 			addByte(s);
-			
+
 	}
 	private void addString(String s)
 	{
@@ -50,16 +50,16 @@ public class HMXRMsg
 		for(byte ch:sd)
 			addByte(ch);
 	}
-	
+
 	String methodname;
 	Collection<Object> args=new ArrayList<Object>();
 	Stack<Collection<Object>> stack=new Stack<Collection<Object>>();
-	
+
 	public void addUntypedArg(Object arg)
 	{
 		args.add(arg);
 	}
-	
+
 	public void addArg(String arg)
 	{
 		args.add(arg);
@@ -108,7 +108,7 @@ public class HMXRMsg
 		else if("}".equals(v))
 		{
 			Collection<Object> arr=args;
-			
+
 			// Unwind this into a tag value pair
 			HashMap<String,Object> m=new HashMap<String,Object>();
 			Iterator<Object> it=arr.iterator();
@@ -122,7 +122,7 @@ public class HMXRMsg
 		else
 			args.add(guessType(v));
 	}
-	
+
 	public Object guessType(String v)
 	{
 		if(v.equalsIgnoreCase("true")||v.equalsIgnoreCase("on"))
@@ -136,17 +136,17 @@ public class HMXRMsg
 		else
 			return(v);
 	}
-	
+
 	public String getMethodName()
 	{
 		return methodname;
 	}
-	
+
 	public HMXRMsg(String methodname)
 	{
 		this.methodname=methodname;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private void addList(Collection<Object> args)
 	{
@@ -204,7 +204,7 @@ public class HMXRMsg
 			}
 		}
 	}
-	
+
 	public byte[] prepareData()
 	{
 		data=new byte[256];
@@ -214,9 +214,9 @@ public class HMXRMsg
 			addString(methodname);
 			addInt(args.size());
 		}
-		
+
 		addList(args);
-		
+
 		byte fullreq[]=new byte[dataoffset+8];
 		System.arraycopy(data,0,fullreq,8,dataoffset);
 		fullreq[0]='B';
@@ -228,5 +228,5 @@ public class HMXRMsg
 		System.arraycopy(data,dataoffset-4,fullreq,4,4);
 		return fullreq;
 	}
-	
+
 }

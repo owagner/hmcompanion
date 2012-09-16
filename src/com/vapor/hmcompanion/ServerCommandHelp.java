@@ -10,7 +10,7 @@ public class ServerCommandHelp extends ServerCommand
 	{
 		super("HELP","Show all commands");
 	}
-	
+
 	@Override
 	public void exec(Server s, ArgSplitter args) throws Exception
 	{

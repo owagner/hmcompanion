@@ -17,7 +17,7 @@ class ReGaItem implements Comparable<ReGaItem>
 		this.address = address;
 		this.interf = interf;
 	}
-	
+
 	@Override
 	public String toString()
 	{

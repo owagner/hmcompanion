@@ -11,7 +11,7 @@ import javax.swing.*;
 public class DevEditor extends JFrame
 {
 	static Map<Device,DevEditor> editors=new HashMap<Device,DevEditor>();
-	
+
 	private Device myDevice;
 	public DevEditor(Device d)
 	{

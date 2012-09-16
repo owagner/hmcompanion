@@ -10,7 +10,7 @@ public class ServerCommandHMRun extends ServerCommand
 	{
 		super("HMRUN","<program> [<program2>...] - execute HMScript programs");
 	}
-	
+
 	@Override
 	public void exec(Server s, ArgSplitter args) throws Exception
 	{

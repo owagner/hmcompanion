@@ -12,7 +12,7 @@ public class ServerCommandMGet extends ServerCommand
 	{
 		super("MGET","<channel name wildcard> <attribute>\tget attribute from multiple channels");
 	}
-	
+
 	@Override
 	public void exec(Server s, ArgSplitter args) throws Exception
 	{

@@ -22,7 +22,7 @@ public class DevRSSIModel extends AbstractTableModel
 	public Object getValueAt(int row, int col)
 	{
 		Device d=Device.deviceList.get(row);
-		
+
 		if(col==0)
 			return d.makeLabel();
 		else if(col>=1 && col<=BidcosInterface.interfaces.size())
@@ -41,10 +41,10 @@ public class DevRSSIModel extends AbstractTableModel
 		else if(col>=1 && col<=BidcosInterface.interfaces.size())
 		{
 			BidcosInterface i=BidcosInterface.interfaceList.get(col-1);
-			
+
 			if(i.description!=null)
 				return "IF:"+i.description+" ("+i.address+")";
-			
+
 			return "IF:"+i.address;
 		}
 		else if(col==BidcosInterface.interfaces.size()+1)
@@ -52,7 +52,7 @@ public class DevRSSIModel extends AbstractTableModel
 		else
 			return "?";
 	}
-	
+
 	@Override
 	@SuppressWarnings({
 		"rawtypes", "unchecked"
@@ -78,7 +78,7 @@ public class DevRSSIModel extends AbstractTableModel
 	public void setValueAt(Object val, int row, int col)
 	{
 		Device d=Device.deviceList.get(row);
-		
+
 		if(col==1+BidcosInterface.interfaces.size())
 			d.setRoaming((Boolean)val);
 		if(col>=1&&col<1+BidcosInterface.interfaces.size())
@@ -87,5 +87,5 @@ public class DevRSSIModel extends AbstractTableModel
 			fireTableRowsUpdated(row,row);
 		}
 	}
-	
+
 }

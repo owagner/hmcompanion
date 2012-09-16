@@ -12,7 +12,7 @@ public class ServerCommandGet extends ServerCommand
 	{
 		super("GET","<channel name or address> [<attribute> [<attributes...>]\tget attribute(s) from channel");
 	}
-	
+
 	@Override
 	public void exec(Server s, ArgSplitter args) throws Exception
 	{

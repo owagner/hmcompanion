@@ -10,7 +10,7 @@ public class ServerCommandHMScript extends ServerCommand
 	{
 		super("HMSCRIPT","<script> - execute HMScript");
 	}
-	
+
 	@Override
 	public void exec(Server s, ArgSplitter args) throws Exception
 	{

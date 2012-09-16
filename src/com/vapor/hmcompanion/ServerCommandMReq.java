@@ -10,7 +10,7 @@ public class ServerCommandMReq extends ServerCommand
 	{
 		super("REQ","<RF|WIRE|SYS> <method> <parameters> - send xmlrpc request");
 	}
-	
+
 	@Override
 	public void exec(Server s, ArgSplitter args) throws Exception
 	{
@@ -38,7 +38,7 @@ public class ServerCommandMReq extends ServerCommand
 				s.send("-Invalid type, must be RF, WIRE or SYS");
 				return;
 		}
-		
+
 		// Add arguments, with some type guessing:
 		// on|true off|false -> Boolean
 		// Integer number (without point)
@@ -50,7 +50,7 @@ public class ServerCommandMReq extends ServerCommand
 			String v=args.args[c];
 			m.addArgWithTypeGuessing(v);
 		}
-		
+
 		HMXRResponse r=HMC.connections[dix].sendRequest(m);
 		s.send(r.toString());
 		s.send(".");
