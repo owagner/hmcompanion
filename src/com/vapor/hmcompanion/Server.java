@@ -1,10 +1,7 @@
 /*
  * This is the client-side server process, used for sending commands to HMCompanion.
- * 
+ *
  * Use a simple line-based protocol suitable for use with netcat or PHP
- * 
- * $Id: Server.java,v 1.9 2011-01-02 19:53:55 owagner Exp $
- * 
  */
 
 package com.vapor.hmcompanion;
@@ -31,7 +28,7 @@ public class Server extends Thread
 			new Server(s).start();
 		}
 	}
-	
+
 	Socket s;
 	PrintWriter pw;
 	Server(Socket s)
@@ -39,7 +36,7 @@ public class Server extends Thread
 		super("Handler for "+s);
 		this.s=s;
 	}
-	
+
 	void send(String txt)
 	{
 		pw.println(txt);
@@ -49,7 +46,7 @@ public class Server extends Thread
 	{
 		String cmdparts[]=l.split(" ",2);
 		String cmd=cmdparts[0].toUpperCase();
-		
+
 		ServerCommand sc=ServerCommand.get(cmd);
 		if(sc!=null)
 		{
@@ -58,7 +55,7 @@ public class Server extends Thread
 		else
 			pw.println("-Unknown command "+cmd);
 	}
-	
+
 	@Override
 	public void run()
 	{
@@ -70,7 +67,7 @@ public class Server extends Thread
 			BufferedReader br=new BufferedReader(new InputStreamReader(s.getInputStream(),"UTF-8"));
 			pw=new PrintWriter(s.getOutputStream());
 			String l;
-			
+
 			if(authkey!=null)
 			{
 				// Require Authentication first
@@ -83,7 +80,7 @@ public class Server extends Thread
 					return;
 				}
 			}
-			
+
 			while((l=br.readLine())!=null)
 			{
 				handleCommand(l);

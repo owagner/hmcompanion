@@ -1,8 +1,5 @@
 /*
- * Caches received attributes 
- * 
- * $Id: AttributeCache.java,v 1.5 2012-09-16 07:42:34 owagner Exp $
- * 
+ * Caches received attributes
  */
 
 package com.vapor.hmcompanion;
@@ -14,7 +11,7 @@ import java.util.logging.*;
 public class AttributeCache
 {
 	static Map<String,Map<String,Attribute>> attrCache=new HashMap<String,Map<String,Attribute>>();
-	
+
 	static synchronized void putAttribute(String device,String attr,Object value)
 	{
 		Map<String,Attribute> dev=attrCache.get(device);
@@ -43,7 +40,7 @@ public class AttributeCache
 		Map<String,Attribute> dev=attrCache.get(device);
 		return dev;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	static void load()
 	{
@@ -64,7 +61,7 @@ public class AttributeCache
 		}
 		Runtime.getRuntime().addShutdownHook(new Saver());
 	}
-	
+
 	static class Saver extends Thread
 	{
 		@Override

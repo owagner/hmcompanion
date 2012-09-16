@@ -1,10 +1,7 @@
 /*
  * This is the client-side server process, used for sending commands to HMCompanion.
- * 
+ *
  * Use a simple line-based protocol suitable for use with netcat or PHP
- * 
- * $Id: XMLRPCServer.java,v 1.8 2012-09-16 07:42:34 owagner Exp $
- * 
  */
 
 package com.vapor.hmcompanion;
@@ -28,9 +25,9 @@ public class XMLRPCServer extends Thread
         InetAddress addr=InetAddress.getLocalHost();
         return "binary://"+System.getProperty("hmc.localhost",addr.getHostAddress())+":"+port;
 	}
-	
+
 	static long lastRequest;
-	
+
 	static final class XMLRPCAcceptor extends Thread
 	{
 		@Override
@@ -51,7 +48,7 @@ public class XMLRPCServer extends Thread
 			}
 		}
 	}
-	
+
 	static Map<String,Long> stats=new HashMap<String,Long>();
 	@SuppressWarnings("boxing")
 	static void incMsg(String key)
@@ -62,7 +59,7 @@ public class XMLRPCServer extends Thread
 		else
 			stats.put(key,l+1);
 	}
-	
+
 	@SuppressWarnings("boxing")
 	static long getStats(String which)
 	{
@@ -72,7 +69,7 @@ public class XMLRPCServer extends Thread
 		else
 			return l;
 	}
-	
+
 	Socket s;
 	OutputStream os;
 	XMLRPCServer(Socket s)
@@ -80,7 +77,7 @@ public class XMLRPCServer extends Thread
 		super("Handler for "+s);
 		this.s=s;
 	}
-	
+
 	private static Map<String,String> buttonlinks=new HashMap<String,String>();
 	private static Set<String> buttonlong=new HashSet<String>();
 	static {
@@ -111,7 +108,7 @@ public class XMLRPCServer extends Thread
 			HMC.l.log(Level.WARNING, "Failed to execute '"+cmd+"'", ioe);
 		}
 	}
-	
+
 	private void tryExec(String address, String item, String val)
 	{
 		String key=address+"."+item+"."+val;
@@ -129,16 +126,16 @@ public class XMLRPCServer extends Thread
 		if(exec==null)
 			return;
 		doExec(exec, dev.name, item, val);
-	}	
-	
-	private String handleEvent(List<Object> parms)
+	}
+
+	private String handleEvent(List<?> parms)
 	{
 		String address=parms.get(1).toString();
 		String item=parms.get(2).toString();
 		Object val=parms.get(3);
 		AttributeCache.putAttribute(address,item,val);
 		tryExec(address, item, val==null?null:val.toString());
-		
+
 		// Check button mappings
 		if(item.startsWith("PRESS_")||("INSTALL_TEST".equals(item)&&buttonlong.contains(address)))
 		{
@@ -151,7 +148,7 @@ public class XMLRPCServer extends Thread
 					buttonlong.remove(address);
 				else
 					item="PRESS_LONG";
-				
+
 				Collection<ReGaItem> items=ReGaDeviceCache.getItemsByName(dest);
 				HMC.l.fine("Mapping button "+item+"="+val+" from "+address+" to "+dest+" ("+items+")");
 				if(items!=null)
@@ -165,7 +162,7 @@ public class XMLRPCServer extends Thread
 							dix=0;
 						else
 							dix=2;
-						
+
 						final HMXRMsg m=new HMXRMsg("setValue");
 						m.addArg(it.address);
 						m.addArg(item);
@@ -189,11 +186,10 @@ public class XMLRPCServer extends Thread
 				}
 			}
 		}
-		
+
 		return parms.get(0).toString();
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	private void handleMethodCall(HMXRResponse r) throws IOException,ParseException
 	{
 		lastRequest=System.currentTimeMillis();
@@ -215,27 +211,27 @@ public class XMLRPCServer extends Thread
 		else if("system.multicall".equals(r.methodName))
 		{
 			HMXRMsg m=new HMXRMsg(null);
-			
+
 			List<Object> result=new ArrayList<Object>();
-			
+
 			String cb=null;
-			
-			for(Object o:(List<Object>)r.rd.get(0))
+
+			for(Object o:(List<?>)r.rd.get(0))
 			{
-				Map<String,Object> call=(Map<String,Object>)o;
+				Map<?,?> call=(Map<?,?>)o;
 				String method=call.get("methodName").toString();
 				if("event".equals(method))
 				{
-					cb=handleEvent((List<Object>)call.get("params"));
+					cb=handleEvent((List<?>)call.get("params"));
 				}
 				else
 					HMC.l.warning("Unknown method in multicall called by CCU:"+method);
-				
+
 				result.add(Collections.singletonList(""));
 			}
-			
+
 			incMsg(cb);
-			
+
 			m.addArg(result);
 			os.write(m.prepareData());
 		}
@@ -245,13 +241,13 @@ public class XMLRPCServer extends Thread
 		//	os.write(bfalse);
 		}
 	}
-	
+
 	static final byte bEmptyString[]={'B','i','n',0, 0,0,0,8, 0,0,0,3, 0,0,0,0};
 	static final byte bEmptyArray[]={'B','i','n',0, 0,0,0,8, 0,0,1,0, 0,0,0,0};
-	
+
 	static final byte btrue[]= {'B','i','n',0, 0,0,0,5, 0,0,0,2, 1};
 	static final byte bfalse[]={'B','i','n',0, 0,0,0,5, 0,0,0,2, 1};
-	
+
 	@Override
 	public void run()
 	{

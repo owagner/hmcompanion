@@ -1,7 +1,3 @@
-/*
- * $Id: ReGaItem.java,v 1.1 2010-05-30 21:13:03 owagner Exp $
- */
-
 package com.vapor.hmcompanion;
 
 class ReGaItem implements Comparable<ReGaItem>
@@ -17,7 +13,7 @@ class ReGaItem implements Comparable<ReGaItem>
 		this.address = address;
 		this.interf = interf;
 	}
-	
+
 	@Override
 	public String toString()
 	{

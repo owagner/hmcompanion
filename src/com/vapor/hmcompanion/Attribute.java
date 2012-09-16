@@ -1,8 +1,5 @@
 /*
- * Represents one attribute and it's metadata 
- * 
- * $Id: Attribute.java,v 1.2 2010-06-02 23:06:01 owagner Exp $
- * 
+ * Represents one attribute and it's metadata
  */
 
 package com.vapor.hmcompanion;
@@ -15,7 +12,7 @@ public class Attribute implements Serializable
 	Object value;
 	Date lastUpdate;
 	Date lastChange;
-	
+
 	public void set(Object nv)
 	{
 		lastUpdate=new Date();
@@ -23,7 +20,7 @@ public class Attribute implements Serializable
 			lastChange=lastUpdate;
 		value=nv;
 	}
-	
+
 	@Override
 	public String toString()
 	{

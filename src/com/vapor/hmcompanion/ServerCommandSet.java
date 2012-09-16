@@ -1,7 +1,3 @@
-/*
- * $Id: ServerCommandSet.java,v 1.4 2012-02-09 11:50:13 owagner Exp $
- */
-
 package com.vapor.hmcompanion;
 
 import java.util.*;
@@ -12,7 +8,7 @@ public class ServerCommandSet extends ServerCommand
 	{
 		super("SET","<channel name or address> <attribute> <value> - shortcut for setValue xmlrpc request");
 	}
-	
+
 	@Override
 	public void exec(Server s, ArgSplitter args) throws Exception
 	{
@@ -38,12 +34,12 @@ public class ServerCommandSet extends ServerCommand
 				dix=3;
 			else
 				dix=2;
-			
+
 			HMXRMsg m=new HMXRMsg("setValue");
 			m.addArg(it.address);
 			m.addArg(args.args[1]);
 			m.addArgWithTypeGuessing(args.args[2]);
-			
+
 			HMXRResponse r=HMC.connections[dix].sendRequest(m);
 			// Ignore response
 		}

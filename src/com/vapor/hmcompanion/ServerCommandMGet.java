@@ -1,7 +1,3 @@
-/*
- * $Id: ServerCommandMGet.java,v 1.1 2010-08-01 19:37:28 owagner Exp $
- */
-
 package com.vapor.hmcompanion;
 
 import java.util.*;
@@ -12,7 +8,7 @@ public class ServerCommandMGet extends ServerCommand
 	{
 		super("MGET","<channel name wildcard> <attribute>\tget attribute from multiple channels");
 	}
-	
+
 	@Override
 	public void exec(Server s, ArgSplitter args) throws Exception
 	{

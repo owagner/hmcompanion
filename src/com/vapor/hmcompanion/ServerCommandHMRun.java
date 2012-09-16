@@ -1,7 +1,3 @@
-/*
- * $Id: ServerCommandHMRun.java,v 1.1 2010-07-18 17:58:26 owagner Exp $
- */
-
 package com.vapor.hmcompanion;
 
 public class ServerCommandHMRun extends ServerCommand
@@ -10,7 +6,7 @@ public class ServerCommandHMRun extends ServerCommand
 	{
 		super("HMRUN","<program> [<program2>...] - execute HMScript programs");
 	}
-	
+
 	@Override
 	public void exec(Server s, ArgSplitter args) throws Exception
 	{

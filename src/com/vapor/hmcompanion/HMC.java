@@ -1,14 +1,11 @@
 /*
  * HomeMatic Companion
  * -------------------
- * 
- * Simple server which provides utility functions for dealing with a HomeMatic CCU for 
+ *
+ * Simple server which provides utility functions for dealing with a HomeMatic CCU for
  * integration into a broader home automation environment.
- * 
+ *
  * Written by Oliver Wagner <owagner@vapor.com>
- * 
- * $Id: HMC.java,v 1.20 2012-09-16 07:42:34 owagner Exp $
- * 
  */
 
 package com.vapor.hmcompanion;
@@ -25,13 +22,13 @@ public class HMC
 	static public Logger l;
 	static public String version="0.19";
 	static public Timer t=new Timer(true);
-	
+
 	static void reInit()
 	{
 		for(HMXRConnection c:connections)
 			c.sendInit();
 	}
-	
+
 	protected static void initWatchog()
 	{
 		long now=System.currentTimeMillis();
@@ -42,7 +39,7 @@ public class HMC
 			reInit();
 		}
 	}
-	
+
 	private static void serverMode(String hmhost,int port,String authkey) throws Exception
 	{
 		l=Logger.getLogger("hmcompanion");
@@ -68,7 +65,7 @@ public class HMC
 		ReGaDeviceCache.loadDeviceCache();
 		Server.acceptIt(port,authkey);
 	}
-	
+
 	private static void loadProperties() throws IOException
 	{
 		File f=new File("hmcompanion.cfg");
@@ -85,13 +82,13 @@ public class HMC
 			br.close();
 		}
 	}
-	
+
 	public static void main(String args[]) throws Exception
 	{
 		l=Logger.getLogger("hmc");
-		
+
 		loadProperties();
-		
+
 		if(args.length>=2 && "-server".equals(args[1]))
 		{
 			serverMode(args[0],args.length>2?Integer.parseInt(args[2]):6770,args.length>3?args[3]:null);
