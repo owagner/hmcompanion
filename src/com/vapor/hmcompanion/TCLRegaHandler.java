@@ -1,8 +1,6 @@
 /*
  * Class to send a HMScript request to the CCU
  * using the tclrega.exe executor
- *
- * $Id: TCLRegaHandler.java,v 1.3 2010-07-18 17:58:26 owagner Exp $
  */
 
 package com.vapor.hmcompanion;

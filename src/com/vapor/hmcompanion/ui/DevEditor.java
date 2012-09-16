@@ -1,7 +1,3 @@
-/*
- * $Id: DevEditor.java,v 1.1 2010-10-24 20:11:25 owagner Exp $
- */
-
 package com.vapor.hmcompanion.ui;
 
 import java.util.*;

@@ -1,7 +1,3 @@
-/*
- * $Id: ServerCommandHMSet.java,v 1.2 2010-07-25 21:16:11 owagner Exp $
- */
-
 package com.vapor.hmcompanion;
 
 public class ServerCommandHMSet extends ServerCommand

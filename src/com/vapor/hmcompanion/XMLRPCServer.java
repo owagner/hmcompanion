@@ -2,9 +2,6 @@
  * This is the client-side server process, used for sending commands to HMCompanion.
  *
  * Use a simple line-based protocol suitable for use with netcat or PHP
- *
- * $Id: XMLRPCServer.java,v 1.8 2012-09-16 07:42:34 owagner Exp $
- *
  */
 
 package com.vapor.hmcompanion;

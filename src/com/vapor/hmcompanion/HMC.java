@@ -6,9 +6,6 @@
  * integration into a broader home automation environment.
  *
  * Written by Oliver Wagner <owagner@vapor.com>
- *
- * $Id: HMC.java,v 1.20 2012-09-16 07:42:34 owagner Exp $
- *
  */
 
 package com.vapor.hmcompanion;

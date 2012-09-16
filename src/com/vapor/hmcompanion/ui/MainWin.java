@@ -1,7 +1,3 @@
-/*
- * $Id: MainWin.java,v 1.6 2012-09-16 07:42:34 owagner Exp $
- */
-
 package com.vapor.hmcompanion.ui;
 
 import java.awt.*;

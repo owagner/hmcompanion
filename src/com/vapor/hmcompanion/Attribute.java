@@ -1,8 +1,5 @@
 /*
  * Represents one attribute and it's metadata
- *
- * $Id: Attribute.java,v 1.2 2010-06-02 23:06:01 owagner Exp $
- *
  */
 
 package com.vapor.hmcompanion;

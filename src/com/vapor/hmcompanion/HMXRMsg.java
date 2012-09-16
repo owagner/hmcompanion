@@ -1,8 +1,5 @@
 /*
  * A HomeMatic "XML-RPC" message (outgoing)
- *
- * $Id: HMXRMsg.java,v 1.9 2012-09-16 07:42:34 owagner Exp $
- *
  */
 
 package com.vapor.hmcompanion;

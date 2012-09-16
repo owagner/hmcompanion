@@ -1,7 +1,3 @@
-/*
- * $Id: ArgSplitter.java,v 1.1 2010-05-30 21:13:04 owagner Exp $
- */
-
 package com.vapor.hmcompanion;
 
 import java.util.*;

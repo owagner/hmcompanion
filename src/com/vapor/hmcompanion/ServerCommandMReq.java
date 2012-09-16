@@ -1,7 +1,3 @@
-/*
- * $Id: ServerCommandMReq.java,v 1.1 2010-09-28 22:43:21 owagner Exp $
- */
-
 package com.vapor.hmcompanion;
 
 public class ServerCommandMReq extends ServerCommand

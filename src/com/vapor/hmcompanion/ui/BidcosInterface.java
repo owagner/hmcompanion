@@ -1,7 +1,3 @@
-/*
- * $Id: BidcosInterface.java,v 1.2 2010-09-30 22:42:41 owagner Exp $
- */
-
 package com.vapor.hmcompanion.ui;
 
 import java.util.*;

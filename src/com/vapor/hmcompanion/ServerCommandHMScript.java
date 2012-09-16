@@ -1,7 +1,3 @@
-/*
- * $Id: ServerCommandHMScript.java,v 1.2 2010-05-30 21:13:04 owagner Exp $
- */
-
 package com.vapor.hmcompanion;
 
 public class ServerCommandHMScript extends ServerCommand

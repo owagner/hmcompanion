@@ -1,7 +1,3 @@
-/*
- * $Id: ServerCommandStats.java,v 1.1 2010-09-26 22:02:11 owagner Exp $
- */
-
 package com.vapor.hmcompanion;
 
 public class ServerCommandStats extends ServerCommand

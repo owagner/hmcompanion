@@ -1,7 +1,3 @@
-/*
- * $Id: ServerCommand.java,v 1.9 2010-09-26 22:02:11 owagner Exp $
- */
-
 package com.vapor.hmcompanion;
 
 import java.util.*;

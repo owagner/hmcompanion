@@ -1,15 +1,12 @@
 /*
  * Encapsulates a HomeMatic "XML-RPC" binary response
- *
- * $Id: HMXRResponse.java,v 1.6 2010-09-28 22:43:21 owagner Exp $
- *
  */
 package com.vapor.hmcompanion;
 
 import java.io.*;
 import java.math.*;
 import java.net.*;
-import java.text.ParseException;
+import java.text.*;
 import java.util.*;
 
 public class HMXRResponse
