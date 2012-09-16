@@ -6,8 +6,6 @@ package com.vapor.hmcompanion.ui;
 
 import java.util.*;
 
-import javax.swing.*;
-
 import com.vapor.hmcompanion.*;
 import com.vapor.hmcompanion.ui.RSSI.RSSIInfo;
 

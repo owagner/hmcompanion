@@ -6,8 +6,6 @@ package com.vapor.hmcompanion.ui;
 
 import java.util.*;
 
-import javax.swing.*;
-
 import com.vapor.hmcompanion.*;
 
 public class BidcosInterface
@@ -48,6 +46,6 @@ public class BidcosInterface
 			interfaces.put(bi.address,bi);
 		}
 		BidcosInterface.interfaces=interfaces;
-		BidcosInterface.interfaceList=new ArrayList(interfaces.values());
+		BidcosInterface.interfaceList=new ArrayList<BidcosInterface>(interfaces.values());
 	}
 }
