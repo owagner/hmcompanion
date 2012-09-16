@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jardesc>
+    <jar path="c:/temp/hmcompanion.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/hmcompanion/hmc.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" mainClassHandleIdentifier="=hmcompanion/src&lt;com.vapor.hmcompanion{HMC.java[HMC" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <file path="/hmcompanion/.classpath"/>
+        <file path="/hmcompanion/hmc.cache"/>
+        <file path="/hmcompanion/.project"/>
+        <javaElement handleIdentifier="=hmcompanion/src"/>
+        <file path="/hmcompanion/.cvsignore"/>
+        <file path="/hmcompanion/ReadMe.txt"/>
+        <file path="/hmcompanion/export.xml"/>
+    </selectedElements>
+</jardesc>

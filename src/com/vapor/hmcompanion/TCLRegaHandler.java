@@ -1,0 +1,54 @@
+/*
+ * Class to send a HMScript request to the CCU
+ * using the tclrega.exe executor
+ * 
+ * $Id: TCLRegaHandler.java,v 1.3 2010-07-18 17:58:26 owagner Exp $
+ */
+
+package com.vapor.hmcompanion;
+
+import java.io.*;
+import java.net.*;
+import java.util.logging.*;
+
+public class TCLRegaHandler
+{
+	static URL url;
+	public static void setHMHost(String host) throws MalformedURLException 
+	{
+		url=new URL("http://"+host+":8181/tclrega.exe");
+	}
+	
+	public static String sendHMScript(String script)
+	{
+		try
+		{
+			HttpURLConnection con=(HttpURLConnection)url.openConnection();
+			con.setRequestMethod("POST");
+			con.setDoOutput(true);
+			con.getOutputStream().write(script.getBytes("ISO-8859-1"));
+			con.getOutputStream().close();
+			BufferedReader br=new BufferedReader(new InputStreamReader(con.getInputStream(),"ISO-8859-1"));
+			StringBuilder reply=new StringBuilder();
+			String l;
+			while((l=br.readLine())!=null)
+			{
+				if(l.length()>0)
+				{
+					l=l.replaceAll("<xml><exec>.*</xml>","");
+					if(l.length()==0)
+						break;
+				}
+				reply.append(l.trim());
+				reply.append('\n');
+			}
+			br.close();
+			return reply.toString().trim();
+		}
+		catch(Exception e)
+		{
+			HMC.l.log(Level.WARNING,"Unable to send tclrega-request",e);
+			return null;
+		}
+	}
+}
