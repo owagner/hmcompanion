@@ -7,7 +7,6 @@ package com.vapor.hmcompanion.ui;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.text.*;
 import java.util.*;
 import java.util.logging.*;
 
