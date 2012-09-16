@@ -125,7 +125,7 @@ System.out.println(v);
 				
 				if("ENUM".equals(type))
 				{
-					List<Object> vl=(List<Object>)parms.get("VALUE_LIST");
+					List<?> vl=(List<?>)parms.get("VALUE_LIST");
 					if(vl!=null)
 						vlab=vl.get(vals.getInt(lab));
 				}

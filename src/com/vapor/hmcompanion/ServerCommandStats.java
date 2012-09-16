@@ -4,8 +4,6 @@
 
 package com.vapor.hmcompanion;
 
-import java.util.*;
-
 public class ServerCommandStats extends ServerCommand
 {
 	ServerCommandStats()

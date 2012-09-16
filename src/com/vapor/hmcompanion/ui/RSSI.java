@@ -6,8 +6,6 @@ package com.vapor.hmcompanion.ui;
 
 import java.util.*;
 
-import javax.swing.*;
-
 import com.vapor.hmcompanion.*;
 
 public class RSSI
