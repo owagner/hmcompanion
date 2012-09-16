@@ -36,9 +36,7 @@ public class RSSI
 
 	static Map<String,Map<String,RSSIInfo>> rssi=Collections.emptyMap();
 
-	@SuppressWarnings({
-		"unchecked", "boxing"
-	})
+	@SuppressWarnings("boxing")
 	static void loadRSSIInfo()
 	{
 		HMXRMsg m=new HMXRMsg("rssiInfo");
@@ -57,7 +55,7 @@ public class RSSI
 			{
 				String ik=cim.getKey();
 
-				List<Object> l=(List<Object>)cim.getValue();
+				List<?> l=(List<?>)cim.getValue();
 
 				RSSIInfo rsi=new RSSIInfo((Integer)l.get(0),(Integer)l.get(1));
 				rm.put(ik,rsi);

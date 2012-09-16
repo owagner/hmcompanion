@@ -144,8 +144,7 @@ public class HMXRMsg
 		this.methodname=methodname;
 	}
 
-	@SuppressWarnings("unchecked")
-	private void addList(Collection<Object> args)
+	private void addList(Collection<?> args)
 	{
 		for(Object o:args)
 		{
@@ -182,20 +181,21 @@ public class HMXRMsg
 			}
 			else if(o instanceof List<?>)
 			{
-				Collection<Object> l=(Collection<Object>)o;
+				Collection<?> l=(Collection<?>)o;
 				addInt(0x100);
 				addInt(l.size());
 				addList(l);
 			}
 			else if(o instanceof Map<?,?>)
 			{
-				Map<String,Object> l=(Map<String,Object>)o;
+				Map<?,?> l=(Map<?,?>)o;
 				addInt(0x101);
 				addInt(l.size());
-				for(Map.Entry<String,Object> me:l.entrySet())
+				for(Map.Entry<?,?> me:l.entrySet())
 				{
-					addInt(me.getKey().length());
-					addString(me.getKey());
+					String key = (String)me.getKey();
+					addInt(key.length());
+					addString(key);
 					addList(Collections.singleton(me.getValue()));
 				}
 			}

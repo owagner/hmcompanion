@@ -105,13 +105,12 @@ public class Device implements Comparable<Device>
 		MainWin.doRequest(m);
 	}
 
-	@SuppressWarnings("unchecked")
 	static void loadDeviceList()
 	{
 		HMXRMsg m=new HMXRMsg("listDevices");
 		HMXRResponse r=MainWin.doRequest(m);
 		Map<String,Device> devices=new HashMap<String,Device>();
-		for(Object mi:(List<Object>)r.getData().get(0))
+		for(Object mi:(List<?>)r.getData().get(0))
 		{
 			HMXRMap o=(HMXRMap)mi;
 			Device bi=new Device(

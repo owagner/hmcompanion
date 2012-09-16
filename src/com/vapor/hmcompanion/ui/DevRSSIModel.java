@@ -50,10 +50,7 @@ public class DevRSSIModel extends AbstractTableModel
 	}
 
 	@Override
-	@SuppressWarnings({
-		"rawtypes", "unchecked"
-	})
-	public Class getColumnClass(int col)
+	public Class<?> getColumnClass(int col)
 	{
 		if(col>=1 && col<BidcosInterface.interfaces.size())
 		{

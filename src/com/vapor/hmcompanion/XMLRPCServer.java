@@ -128,7 +128,7 @@ public class XMLRPCServer extends Thread
 		doExec(exec, dev.name, item, val);
 	}
 
-	private String handleEvent(List<Object> parms)
+	private String handleEvent(List<?> parms)
 	{
 		String address=parms.get(1).toString();
 		String item=parms.get(2).toString();
@@ -190,7 +190,6 @@ public class XMLRPCServer extends Thread
 		return parms.get(0).toString();
 	}
 
-	@SuppressWarnings("unchecked")
 	private void handleMethodCall(HMXRResponse r) throws IOException,ParseException
 	{
 		lastRequest=System.currentTimeMillis();
@@ -217,13 +216,13 @@ public class XMLRPCServer extends Thread
 
 			String cb=null;
 
-			for(Object o:(List<Object>)r.rd.get(0))
+			for(Object o:(List<?>)r.rd.get(0))
 			{
-				Map<String,Object> call=(Map<String,Object>)o;
+				Map<?,?> call=(Map<?,?>)o;
 				String method=call.get("methodName").toString();
 				if("event".equals(method))
 				{
-					cb=handleEvent((List<Object>)call.get("params"));
+					cb=handleEvent((List<?>)call.get("params"));
 				}
 				else
 					HMC.l.warning("Unknown method in multicall called by CCU:"+method);

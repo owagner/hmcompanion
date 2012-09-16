@@ -146,8 +146,8 @@ public class HMXRResponse
 		dumpCollection(rd,sb,0);
 		return sb.toString();
 	}
-	@SuppressWarnings("unchecked")
-	private void dumpCollection(Collection<Object> c,StringBuilder sb,int indent)
+
+	private void dumpCollection(Collection<?> c,StringBuilder sb,int indent)
 	{
 		if(indent>0)
 		{
@@ -159,11 +159,11 @@ public class HMXRResponse
 		{
 			if(o instanceof Map)
 			{
-				dumpMap((Map<String,Object>)o,sb,indent+1);
+				dumpMap((Map<?,?>)o,sb,indent+1);
 			}
 			else if(o instanceof Collection)
 			{
-				dumpCollection((Collection<Object>)o,sb,indent+1);
+				dumpCollection((Collection<?>)o,sb,indent+1);
 			}
 			else
 			{
@@ -180,8 +180,8 @@ public class HMXRResponse
 			sb.append("]\n");
 		}
 	}
-	@SuppressWarnings("unchecked")
-	private void dumpMap(Map<String,Object> c,StringBuilder sb,int indent)
+
+	private void dumpMap(Map<?,?> c,StringBuilder sb,int indent)
 	{
 		if(indent>0)
 		{
@@ -189,7 +189,7 @@ public class HMXRResponse
 				sb.append('\t');
 			sb.append("{\n");
 		}
-		for(Map.Entry<String,Object> me:c.entrySet())
+		for(Map.Entry<?,?> me:c.entrySet())
 		{
 			Object o=me.getValue();
 			for(int in=0;in<indent;in++)
@@ -199,12 +199,12 @@ public class HMXRResponse
 			if(o instanceof Map<?,?>)
 			{
 				sb.append("\n");
-				dumpMap((Map<String,Object>)o,sb,indent+1);
+				dumpMap((Map<?,?>)o,sb,indent+1);
 			}
 			else if(o instanceof Collection<?>)
 			{
 				sb.append("\n");
-				dumpCollection((Collection<Object>)o,sb,indent+1);
+				dumpCollection((Collection<?>)o,sb,indent+1);
 			}
 			else
 			{

@@ -22,13 +22,12 @@ public class BidcosInterface
 		this.description = description;
 	}
 
-	@SuppressWarnings("unchecked")
 	static void loadInterfacelist()
 	{
 		HMXRMsg m=new HMXRMsg("listBidcosInterfaces");
 		HMXRResponse r=MainWin.doRequest(m);
 		Map<String,BidcosInterface> interfaces=new TreeMap<String,BidcosInterface>();
-		for(Object mi:(List<Object>)r.getData().get(0))
+		for(Object mi:(List<?>)r.getData().get(0))
 		{
 			HMXRMap o=(HMXRMap)mi;
 
