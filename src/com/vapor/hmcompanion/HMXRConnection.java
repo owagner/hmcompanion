@@ -16,7 +16,7 @@ public class HMXRConnection extends Thread
 	int port;
 	String serverurl;
 	int instance;
-	
+
 	public HMXRConnection(String host,int port,String serverurl,int instance)
 	{
 		this.host=host;
@@ -24,7 +24,7 @@ public class HMXRConnection extends Thread
 		this.serverurl=serverurl;
 		this.instance=instance;
 	}
-	
+
 	// Deinit on shutdown
 	private class Deiniter extends Thread
 	{
@@ -43,7 +43,7 @@ public class HMXRConnection extends Thread
 			}
 		}
 	}
-	
+
 	public void sendInit()
 	{
 		HMXRMsg m=new HMXRMsg("init");
@@ -61,14 +61,14 @@ public class HMXRConnection extends Thread
 		Runtime.getRuntime().addShutdownHook(new Deiniter());
 	}
 
-	
+
 	public synchronized HMXRResponse sendRequest(HMXRMsg m,boolean retry) throws IOException, ParseException
 	{
 		try
 		{
 			if(s==null)
 				s=new Socket(host,port);
-			
+
 			s.getOutputStream().write(m.prepareData());
 			return HMXRResponse.readMsg(s,false);
 		}

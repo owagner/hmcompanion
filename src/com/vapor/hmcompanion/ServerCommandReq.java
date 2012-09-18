@@ -1,7 +1,3 @@
-/*
- * $Id: ServerCommandReq.java,v 1.4 2012-09-16 07:42:34 owagner Exp $
- */
-
 package com.vapor.hmcompanion;
 
 public class ServerCommandReq extends ServerCommand
@@ -10,7 +6,7 @@ public class ServerCommandReq extends ServerCommand
 	{
 		super("REQ","<RF|WIRE|SYS|CUXD> <method> <parameters> - send xmlrpc request");
 	}
-	
+
 	@Override
 	public void exec(Server s, ArgSplitter args) throws Exception
 	{
@@ -42,7 +38,7 @@ public class ServerCommandReq extends ServerCommand
 				s.send("-Invalid type, must be RF, WIRE, CUXD or SYS");
 				return;
 		}
-		
+
 		// Add arguments, with some type guessing:
 		// on|true off|false -> Boolean
 		// Integer number (without point)
@@ -54,7 +50,7 @@ public class ServerCommandReq extends ServerCommand
 			String v=args.args[c];
 			m.addArgWithTypeGuessing(v);
 		}
-		
+
 		HMXRResponse r=HMC.connections[dix].sendRequest(m);
 		s.send(r.toString());
 		s.send(".");

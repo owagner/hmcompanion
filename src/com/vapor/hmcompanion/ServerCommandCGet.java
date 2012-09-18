@@ -1,7 +1,3 @@
-/*
- * $Id: ServerCommandCGet.java,v 1.1 2010-06-02 23:22:47 owagner Exp $
- */
-
 package com.vapor.hmcompanion;
 
 import java.util.*;
@@ -12,7 +8,7 @@ public class ServerCommandCGet extends ServerCommand
 	{
 		super("CGET","<channel name or address> get channel attributes in Cacti script format");
 	}
-	
+
 	@Override
 	public void exec(Server s, ArgSplitter args) throws Exception
 	{

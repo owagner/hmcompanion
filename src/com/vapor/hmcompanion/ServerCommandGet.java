@@ -1,7 +1,3 @@
-/*
- * $Id: ServerCommandGet.java,v 1.3 2010-05-30 21:13:04 owagner Exp $
- */
-
 package com.vapor.hmcompanion;
 
 import java.util.*;
@@ -12,7 +8,7 @@ public class ServerCommandGet extends ServerCommand
 	{
 		super("GET","<channel name or address> [<attribute> [<attributes...>]\tget attribute(s) from channel");
 	}
-	
+
 	@Override
 	public void exec(Server s, ArgSplitter args) throws Exception
 	{

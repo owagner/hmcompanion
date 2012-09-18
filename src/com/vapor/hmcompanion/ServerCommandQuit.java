@@ -1,7 +1,3 @@
-/*
- * $Id: ServerCommandQuit.java,v 1.3 2010-09-26 22:02:11 owagner Exp $
- */
-
 package com.vapor.hmcompanion;
 
 import java.io.*;

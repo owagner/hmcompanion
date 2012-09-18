@@ -1,7 +1,3 @@
-/*
- * $Id: DevEditor.java,v 1.1 2010-10-24 20:11:25 owagner Exp $
- */
-
 package com.vapor.hmcompanion.ui;
 
 import java.util.*;
@@ -11,7 +7,7 @@ import javax.swing.*;
 public class DevEditor extends JFrame
 {
 	static Map<Device,DevEditor> editors=new HashMap<Device,DevEditor>();
-	
+
 	private Device myDevice;
 	public DevEditor(Device d)
 	{

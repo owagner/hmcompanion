@@ -1,7 +1,3 @@
-/*
- * $Id: ServerCommand.java,v 1.9 2010-09-26 22:02:11 owagner Exp $
- */
-
 package com.vapor.hmcompanion;
 
 import java.util.*;
@@ -9,7 +5,7 @@ import java.util.*;
 public abstract class ServerCommand
 {
 	static Map<String,ServerCommand> commands=new HashMap<String,ServerCommand>();
-	
+
 	static ServerCommand get(String cmd)
 	{
 		return commands.get(cmd);
@@ -35,7 +31,7 @@ public abstract class ServerCommand
 		add(new ServerCommandNames());
 		add(new ServerCommandStats());
 	}
-	
+
 	/* Helpers */
 	static String parseAddress(String name)
 	{
@@ -52,17 +48,17 @@ public abstract class ServerCommand
 		{
 			HMC.l.warning("Unable to resolve name "+name);
 			return name;
-		}	
+		}
 	}
-	
+
 	String cmd;
 	String desc;
-	
+
 	ServerCommand(String cmd,String desc)
 	{
 		this.cmd=cmd;
 		this.desc=desc;
 	}
-	
+
 	public abstract void exec(Server s,ArgSplitter args) throws Exception;
 }

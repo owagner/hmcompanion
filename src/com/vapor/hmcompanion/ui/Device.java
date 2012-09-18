@@ -1,7 +1,3 @@
-/*
- * $Id: Device.java,v 1.5 2012-09-16 07:42:34 owagner Exp $
- */
-
 package com.vapor.hmcompanion.ui;
 
 import java.util.*;
@@ -17,13 +13,13 @@ public class Device implements Comparable<Device>
 	String firmware;
 	boolean roaming;
 	boolean usesAES;
-	
+
 	String name; // ReGa name
-	
+
 	RSSIInfo ifrssi[];
-	
+
 	Map<String,RSSIInfo> rssi=Collections.emptyMap();
-	
+
 	private Device(String address, String interf, String type, boolean roaming, String firmware, Device parent)
 	{
 		this.address = address;
@@ -44,12 +40,12 @@ public class Device implements Comparable<Device>
 		for(int c=0;c<ifrssi.length;c++)
 		{
 			String ifadr=BidcosInterface.interfaceList.get(c).address;
-			
+
 			ifrssi[c]=rssi.get(ifadr);
 			if(ifrssi[c]==null)
 				ifrssi[c]=new RSSIInfo();
 			ifrssi[c].isDef=ifadr.equals(interf);
-			
+
 			if(ifrssi[c].to!=65536&&ifrssi[c].to>bestValue)
 			{
 				bestValue=ifrssi[c].to;
@@ -65,41 +61,41 @@ public class Device implements Comparable<Device>
 
 	public Map<String,Device> subdevices;
 	Device parent;
-	
+
 	static Map<String,Device> devices=new TreeMap<String,Device>();
 	static List<Device> deviceList=Collections.emptyList();
-	
+
 	private Device(String address)
 	{
 		this.address = address;
 	}
-	
+
 	HMXRMap valueParamsetDescription;
-	
+
 	public HMXRMap getValueParamsetDescription()
 	{
 		if(valueParamsetDescription!=null)
 			return valueParamsetDescription;
-		
+
 		HMXRMsg m=new HMXRMsg("getParamsetDescription");
 		m.addArg(address);
 		m.addArg("VALUES");
 		HMXRResponse r=MainWin.doRequest(m);
-		
+
 		valueParamsetDescription=(HMXRMap)r.getData().get(0);
-		return valueParamsetDescription; 
+		return valueParamsetDescription;
 	}
-	
+
 	public HMXRMap getValues()
 	{
 		HMXRMsg m=new HMXRMsg("getParamset");
 		m.addArg(address);
 		m.addArg("VALUES");
 		HMXRResponse r=MainWin.doRequest(m);
-		
+
 		return (HMXRMap)r.getData().get(0);
 	}
-	
+
 	public void setValue(String n,Object v)
 	{
 		HMXRMsg m=new HMXRMsg("setValue");
@@ -109,13 +105,12 @@ public class Device implements Comparable<Device>
 		MainWin.doRequest(m);
 	}
 
-	@SuppressWarnings("unchecked")
 	static void loadDeviceList()
 	{
 		HMXRMsg m=new HMXRMsg("listDevices");
 		HMXRResponse r=MainWin.doRequest(m);
 		Map<String,Device> devices=new HashMap<String,Device>();
-		for(Object mi:(List<Object>)r.getData().get(0))
+		for(Object mi:(List<?>)r.getData().get(0))
 		{
 			HMXRMap o=(HMXRMap)mi;
 			Device bi=new Device(
@@ -126,11 +121,11 @@ public class Device implements Comparable<Device>
 				o.getString("FIRMWARE"),
 				devices.get(o.getString("PARENT"))
 			);
-			
+
 			int aes=o.getInt("AES_ACTIVE");
 			if(aes==1)
 				bi.usesAES=true;
-			
+
 			if(bi.parent!=null)
 			{
 				bi.parent.addChild(bi);
@@ -139,7 +134,7 @@ public class Device implements Comparable<Device>
 			{
 				devices.put(bi.address,bi);
 			}
-			
+
 		}
 		Device.devices=devices;
 		Device.deviceList=new ArrayList<Device>(devices.values());
@@ -186,7 +181,7 @@ public class Device implements Comparable<Device>
 		else
 			return address;
 	}
-	
+
 	public static void setNames(Map<String, String> names)
 	{
 		for(Device d:deviceList)
@@ -199,7 +194,7 @@ public class Device implements Comparable<Device>
 		Collections.sort(l);
 		Device.deviceList=l;
 	}
-	
+
 	public static void setRSSI(Map<String,Map<String,RSSIInfo>> rssi)
 	{
 		for(Device d:deviceList)
@@ -213,15 +208,15 @@ public class Device implements Comparable<Device>
 
 	private void setBidcosInterface()
 	{
-		
+
 		HMXRMsg m=new HMXRMsg("setBidcosInterface");
 		m.addArg(address);
 		m.addArg(interf);
 		m.addArg(roaming);
 		MainWin.doRequest(m);
-		
+
 	}
-	
+
 	public void setRoaming(boolean roaming)
 	{
 		if(roaming!=this.roaming)
@@ -263,6 +258,6 @@ public class Device implements Comparable<Device>
 		if(ifrssi[bestix].cmpVal()>Integer.MIN_VALUE)
 			setInterface(BidcosInterface.interfaceList.get(bestix).address);
 	}
-	
+
 
 }
