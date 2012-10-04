@@ -1,4 +1,4 @@
-﻿HMCompanion V0.19
+﻿HMCompanion V0.20
 =================
 Geschrieben von Oliver Wagner <owagner@vapor.com>
 
@@ -238,6 +238,9 @@ V0.18 - unterstützt nun auch CUxD (ab V0.564)
       - Properties können nun in einer Datei "hmcompanion.cfg" definiert werden
       
 V0.19 - experimentelle Funktion zum Setzen von Attributen im GUI-Modus
+
+V0.20 - Versionen ab 0.18 starteten nicht mehr korrekt, wenn kein CUxD auf der CCU installiert war.
+
 
       
                                 

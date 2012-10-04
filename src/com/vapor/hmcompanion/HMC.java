@@ -11,6 +11,7 @@
 package com.vapor.hmcompanion;
 
 import java.io.*;
+import java.net.*;
 import java.util.*;
 import java.util.logging.*;
 
@@ -20,7 +21,7 @@ public class HMC
 {
 	static HMXRConnection connections[];
 	static public Logger l;
-	static public String version="0.19";
+	static public String version="0.20";
 	static public Timer t=new Timer(true);
 
 	static void reInit()
@@ -48,12 +49,26 @@ public class HMC
 		TCLRegaHandler.setHMHost(hmhost);
 		String serverurl=XMLRPCServer.init();
 		l.info("Listening for XMLRPC callbacks on "+serverurl+", now init-ing");
-		connections=new HMXRConnection[4];
+		boolean useCUXD=false;
+		try
+		{
+			Socket s=new Socket(hmhost,8701);
+			s.close();
+			useCUXD=true;
+		}
+		catch(Exception e)
+		{
+			// Ignore
+			l.fine("Probing for CUxD failed, deactivating");
+		}
+
+		connections=new HMXRConnection[useCUXD?4:3];
 		for(int c=0;c<3;c++)
 		{
 			connections[c]=new HMXRConnection(hmhost,2000+c,serverurl,c);
 		}
-		connections[3]=new HMXRConnection(hmhost,8701,serverurl,3);
+		if(useCUXD)
+			connections[3]=new HMXRConnection(hmhost,8701,serverurl,3);
 		reInit();
 		t.schedule(new TimerTask(){
 			@Override
