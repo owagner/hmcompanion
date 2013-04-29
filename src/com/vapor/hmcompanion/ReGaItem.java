@@ -20,6 +20,7 @@ class ReGaItem implements Comparable<ReGaItem>
 		return "["+id+":"+name+"/"+address+"/"+interf+"]";
 	}
 
+	@Override
 	public int compareTo(ReGaItem o)
 	{
 		return name.compareTo(o.name);

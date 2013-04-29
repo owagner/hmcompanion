@@ -1,4 +1,4 @@
-﻿HMCompanion V0.20
+﻿HMCompanion V0.21
 =================
 Geschrieben von Oliver Wagner <owagner@vapor.com>
 
@@ -165,7 +165,24 @@ Diese Events können entweder als Property beim Start von HMC mitgegeben (-DBidC
 oder in der optionalen Datei "hmcompanion.cfg" definiert werden.
 
 
-6. History
+6. Interface zu Graphite/Carbon
+-------------------------------
+HMC kann sämtliche Statusänderungen auch als Metric an einen carbon-Server des Graphite-Pakets (http://graphite.wikidot.com/)
+schicken. Hier muss die Netzwerkadresse des Carbon-Servers mittels der Property
+
+-Dhmc.carbon.host=<hostname oder IP>
+
+festgelegt werden. Die Namen der Metriken werden aus dem ReGaHSS-Gerätenamen und dem Attributnamen gebildet, mit dem
+zusätzlichen Präfix, welches per "-Dhmc.carbon.prefix=" festgelegt ist (Default ist "hm."). Dabei wird alles in
+Kleinbuchstaben verwandelt und alle unzulässigen Zeichen werden in "_" umgewandelt. Boolsche Werte werden dabei in numerisch
+0 bzw. 1 umgesetzt. 
+
+Beispiel: Das Attribut "RAINING" des Gerätes "Wetterstation Aussen" ergibt den Metriknamen
+
+hm.wetterstation_aussen.raining 
+
+
+7. History
 ----------
 V0.2 - erste funktionale Version
 
@@ -241,6 +258,7 @@ V0.19 - experimentelle Funktion zum Setzen von Attributen im GUI-Modus
 
 V0.20 - Versionen ab 0.18 starteten nicht mehr korrekt, wenn kein CUxD auf der CCU installiert war.
 
+V0.21 - Interface zu Graphite/Carbon hinzugefügt
 
-      
+    
                                 

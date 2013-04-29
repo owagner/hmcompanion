@@ -21,7 +21,7 @@ public class HMC
 {
 	static HMXRConnection connections[];
 	static public Logger l;
-	static public String version="0.20";
+	static public String version="0.21";
 	static public Timer t=new Timer(true);
 
 	static void reInit()
@@ -44,8 +44,9 @@ public class HMC
 	private static void serverMode(String hmhost,int port,String authkey) throws Exception
 	{
 		l=Logger.getLogger("hmcompanion");
-		l.info("HMCompanion V"+version+" (C) 2012 Oliver Wagner <owagner@vapor.com>, All Rights Reserved");
+		l.info("HMCompanion V"+version+" (C) 2013 Oliver Wagner <owagner@vapor.com>, All Rights Reserved");
 		AttributeCache.load();
+		GraphiteInterface.init();
 		TCLRegaHandler.setHMHost(hmhost);
 		String serverurl=XMLRPCServer.init();
 		l.info("Listening for XMLRPC callbacks on "+serverurl+", now init-ing");

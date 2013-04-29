@@ -135,7 +135,6 @@ public class XMLRPCServer extends Thread
 		Object val=parms.get(3);
 		AttributeCache.putAttribute(address,item,val);
 		tryExec(address, item, val==null?null:val.toString());
-
 		// Check button mappings
 		if(item.startsWith("PRESS_")||("INSTALL_TEST".equals(item)&&buttonlong.contains(address)))
 		{
@@ -187,10 +186,13 @@ public class XMLRPCServer extends Thread
 			}
 		}
 
+		if(val!=null)
+			GraphiteInterface.sendToCarbon(address, item, val.toString());
+
 		return parms.get(0).toString();
 	}
 
-	private void handleMethodCall(HMXRResponse r) throws IOException,ParseException
+	private void handleMethodCall(HMXRResponse r) throws IOException
 	{
 		lastRequest=System.currentTimeMillis();
 		if("event".equals(r.methodName))
