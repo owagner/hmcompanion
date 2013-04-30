@@ -71,8 +71,8 @@ Die JSON-API-Befehle kann man mittels http://homematic-ip/api/homematic.cgi eins
 die CCU hat, kann den TCL-Quelltext der einzelnen über das API verfügbaren Methoden im Verzeichnis /www/api/methods
 einsehen. Diese lassen auch interessante Rückschlüsse auf interne HMScript- und xmlrpc-Aufrufe zu.
 
-Eine Dokumentation der XML-RPC-Schnittstelle befand sich zwischenzeitlich auf der offiziellen Homematic-Webseite,
-scheint aber derzeit nicht verfügbar zu sein.
+Eine Dokumentation der XML-RPC-Schnittstelle bfindet sich auf der Hersteller-Website unter
+http://www.eq-3.de/software.html
 
 
 3. Kommunikation HMCompanion und CCU
