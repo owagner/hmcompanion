@@ -210,6 +210,14 @@ public class XMLRPCServer extends Thread
 			// Hm we ignore that
 			os.write(bEmptyArray);
 		}
+		else if("system.listMethods".equals(r.methodName))
+		{
+			HMXRMsg m=new HMXRMsg(null);
+			List<Object> result=new ArrayList<Object>();
+			result.add("event");
+			m.addArg(result);
+			os.write(m.prepareData());
+		}
 		else if("system.multicall".equals(r.methodName))
 		{
 			HMXRMsg m=new HMXRMsg(null);

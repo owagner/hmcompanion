@@ -46,12 +46,14 @@ public class HMXRConnection extends Thread
 
 	public void sendInit()
 	{
+		HMC.l.info("Sending init to "+host+":"+port+" with "+serverurl);
 		HMXRMsg m=new HMXRMsg("init");
 		m.addArg(serverurl);
 		m.addArg("CB"+instance);
 		try
 		{
-			sendRequest(m);
+			sendRequest(m,false);
+			HMC.l.info("Init to "+host+":"+port+" with "+serverurl+" successful");
 		}
 		catch(Exception e)
 		{

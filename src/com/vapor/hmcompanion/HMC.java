@@ -21,7 +21,7 @@ public class HMC
 {
 	static HMXRConnection connections[];
 	static public Logger l;
-	static public String version="0.21";
+	static public String version="0.22";
 	static public Timer t=new Timer(true);
 
 	static void reInit()

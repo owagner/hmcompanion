@@ -1,4 +1,4 @@
-﻿HMCompanion V0.21
+﻿HMCompanion V0.23
 =================
 Geschrieben von Oliver Wagner <owagner@vapor.com>
 
@@ -259,6 +259,9 @@ V0.19 - experimentelle Funktion zum Setzen von Attributen im GUI-Modus
 V0.20 - Versionen ab 0.18 starteten nicht mehr korrekt, wenn kein CUxD auf der CCU installiert war.
 
 V0.21 - Interface zu Graphite/Carbon hinzugefügt
+
+V0.22 - Fix für CCU2 (implement nun system.listMethods)
+
 
     
                                 
