@@ -11,12 +11,6 @@
         </sealing>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
-        <file path="/hmcompanion/.classpath"/>
-        <file path="/hmcompanion/hmc.cache"/>
-        <file path="/hmcompanion/.project"/>
         <javaElement handleIdentifier="=hmcompanion/src"/>
-        <file path="/hmcompanion/.cvsignore"/>
-        <file path="/hmcompanion/ReadMe.txt"/>
-        <file path="/hmcompanion/export.xml"/>
     </selectedElements>
 </jardesc>
