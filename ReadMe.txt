@@ -1,4 +1,4 @@
-﻿HMCompanion V0.23
+﻿HMCompanion V0.22
 =================
 Geschrieben von Oliver Wagner <owagner@vapor.com>
 
