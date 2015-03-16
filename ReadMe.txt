@@ -1,4 +1,6 @@
-﻿HMCompanion V0.22
+[Please note: The middleware aspect of this software has been superseded by https://github.com/owagner/hm2mqtt]
+
+HMCompanion V0.22
 =================
 Geschrieben von Oliver Wagner <owagner@vapor.com>
 
